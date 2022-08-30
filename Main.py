@@ -1,3 +1,6 @@
-print('Hola mundo')
+from Menu import *
 
+Llamado = Menu()
+
+Llamado.Opciones()
 
