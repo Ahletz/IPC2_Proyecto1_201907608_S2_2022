@@ -38,11 +38,12 @@ class Lista: #clase listas
         self.head = None #creacopm de cabezera de lista
 
     def estado(self):
+
         return self.head == None #estado de la lista 
 
     def agregar(self, nombre, edad): #agregar contenido a la lista
         asig = Nodo(nombre, edad)
-        asig.asignar_next(self.head)
+        asig.asignar_next(self.head,self.head)
         self.head = asig
 
     def tamano(self): #tamaño de la lista
@@ -57,7 +58,7 @@ class Lista: #clase listas
     def Mostrar(self): #mostrar contenido de la lista
         actual = self.head
         while actual != None:
-            print(actual.obtener() + ' ', end='')
+            print(actual.obtener() + ' '+actual.obtener_edad())
             actual = actual.obtener_next()       
 
     def Eliminar(self,dato): #eliminar contenido de la lista

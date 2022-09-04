@@ -26,37 +26,41 @@ class Menu:
             print('|| 3. Generar Salida.')
             print('|| 4. Salir.')
 
-            try: #capturador try exeption de errores al momento de ingresar una opcion no valida
+            #try: #capturador try exeption de errores al momento de ingresar una opcion no valida
                     
-                    opcion = int(input()) #ingreso de la opcion a elegir 
+            opcion = int(input()) #ingreso de la opcion a elegir 
 
-                    if opcion == 1: #cargar archivo
+            if opcion == 1: #cargar archivo
 
-                        print('abriendo...')
+                print('abriendo...')
 
-                        direccion = abrir.AbrirArchivo() #direccion del documento cargado 
+                direccion = abrir.AbrirArchivo() #direccion del documento cargado 
 
-                        print(direccion) #direccion del archivo
+                print(direccion) #direccion del archivo
 
-                        lectura.Leer(direccion) #Lectura del xml
+                lectura.Leer(direccion) #Lectura del xml
 
+                print('--------------------------------------------------------------------')
 
+                lectura.Leer_rejillas(direccion)
 
-                    elif opcion == 2:
+                print('--------------------------------------------------------------------')
+
+            elif opcion == 2:
+                        
+                    print()
+
+            elif opcion == 3:
                         
                         print()
 
-                    elif opcion == 3:
-                        
-                        print()
-
-                    elif opcion == 4:
+            elif opcion == 4:
 
                         exit = False #cerrar el ciclo del menu
 
-            except:
+           # except:
 
-                print('USTED NO SELECCIONO UNA OPCION VALIDA.')
+                #print('USTED NO SELECCIONO UNA OPCION VALIDA.')
 
             
 
