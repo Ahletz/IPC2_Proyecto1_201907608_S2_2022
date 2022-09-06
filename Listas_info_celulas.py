@@ -86,11 +86,19 @@ class Lista_rejilla: #clase listas
 
     def Mostrar(self,): #mostrar contenido de la lista
         actual = self.head
+
+        print('INGRESE EL NOMBRE DEL PACIENTE PARA VER SU REJILLA: ')
+        nombre = input()
+
         while actual != None:
 
-            print('['+actual.obtener_fila()+'x'+actual.obtener_columna()+', '+actual.obtener_estado()+']', end='')
+            if nombre == actual.obtener():
 
-            actual = actual.obtener_next()       
+                print('['+actual.obtener_fila()+'x'+actual.obtener_columna()+', '+actual.obtener_estado()+']', end='')
+
+
+            actual = actual.obtener_next()   
+        print()    
 
     def Eliminar(self,dato): #eliminar contenido de la lista
         actual = self.head

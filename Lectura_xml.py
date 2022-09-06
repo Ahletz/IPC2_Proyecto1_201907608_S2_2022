@@ -1,3 +1,4 @@
+from unicodedata import name
 import xml.etree.ElementTree as ET
 from Listas_Infor_pacientes import *
 from Listas_info_celulas import *
@@ -7,23 +8,23 @@ class Open:
 
     def Leer(self, direccion):
 
-        info = Lista()
+        info = Lista() #clase lida
 
-        tree = ET.parse(direccion)
+        tree = ET.parse(direccion) #leer elemntTree 
 
-        root = tree.getroot()
+        root = tree.getroot() #obtener xml 
 
         i = 0
 
-        for paciente in root.findall('paciente'):
+        for paciente in root.findall('paciente'): #ciclo pacientes
 
             i+=1
 
-            datos = paciente.find('datospersonales')
-            nombre = datos.find('nombre').text
-            edad = datos.find('edad').text
-            info.agregar(nombre, edad)
-            print(i,nombre,edad)
+            datos = paciente.find('datospersonales') #obtener datos de la etiqueta datos
+            nombre = datos.find('nombre').text #obtener el nombre 
+            edad = datos.find('edad').text #obtener edad
+            info.agregar(nombre, edad) # agregar a lista
+            print(i,nombre,edad) #imprimir datos
 
         print('-------------------------------')
 
@@ -38,24 +39,45 @@ class Open:
         for paciente in root.findall('paciente'):
 
             dato = paciente.find('datospersonales')
+
+            rejilla = paciente.find('rejilla')
             
             m = int(paciente.find('m').text)
 
             nombre = dato.find('nombre').text
 
+            estado = rejilla.find('celda')
+
             if (m%10) == 0 and m < 10000:
 
                 m+=1
 
-                for i in range(m):
+                for i in range(1, m): #ciclo para crear filas
 
-                    for j in range(m):
+                    for j in range(1, m): #ciclo para crear columnas
 
-                        info_rejilla.agregar(nombre,'sana',str(i),str(j))
+                        for x in rejilla.findall('celda'): #ciclo para contagiar celulas
+
+                            estado_fila = x.attrib.get('f') #obtener fila de la celula contagiada
+
+                            estado_columna = x.attrib.get('c') #obtener columna de la celula contagiada
+                            
+                            if estado_fila == str(i) and estado_columna == str(j): #comprobacion de fila
+
+                                celula = 'contagiada' #contagiar celda
+                                break #terminar ciclo para no descontagiar
+                                
+                            else:
+                                celula = 'sana' #celula sana
+                                
+                                
+
+                        
+                        info_rejilla.agregar(nombre,celula,str(i),str(j)) #agregar informacion a listas
 
             else: 
 
-                print('La rejilla celular del paciente '+dato.find('nombre').text+' no es una rejilla valida')
+                print('La rejilla celular del paciente '+dato.find('nombre').text+' no es una rejilla valida') #si la rejilla no es m%10 ==0
 
             
         info_rejilla.Mostrar()
