@@ -58,7 +58,7 @@ class Lista: #clase listas
     def Mostrar(self): #mostrar contenido de la lista
         actual = self.head
         while actual != None:
-            print(actual.obtener() + ' '+actual.obtener_edad())
+            print('Nombre: '+actual.obtener() + ' ,edad:'+actual.obtener_edad())
             actual = actual.obtener_next()       
 
     def Eliminar(self,dato): #eliminar contenido de la lista

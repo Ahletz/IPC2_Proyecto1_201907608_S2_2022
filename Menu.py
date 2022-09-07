@@ -15,7 +15,7 @@ class Menu:
 
         exit = True #salida del programa
 
-        lectura = Open()
+        self.lectura = Open()
 
         while exit == True:
 
@@ -38,17 +38,25 @@ class Menu:
 
                 print(direccion) #direccion del archivo
 
-                lectura.Leer(direccion) #Lectura del xml
+                self.lectura.Leer(direccion) #Lectura del xml
 
                 print('--------------------------------------------------------------------')
 
-                lectura.Leer_rejillas(direccion)
+                self.lectura.Leer_rejillas(direccion)
 
                 print('--------------------------------------------------------------------')
 
             elif opcion == 2:
-                        
-                    print()
+
+                    self.lectura.mostrar()    
+                    print('INGRESE EL NOMBRE DEL PACIENTE: ')
+
+                    nombre = input()
+
+                    self.lectura.mostrar_rejilla(nombre)
+
+                    
+
 
             elif opcion == 3:
                         
@@ -62,6 +70,13 @@ class Menu:
 
                 #print('USTED NO SELECCIONO UNA OPCION VALIDA.')
 
+    def Graficar(self):
+
+        pass
+
+    def Generar_salida(self):
+
+        pass
             
 
             

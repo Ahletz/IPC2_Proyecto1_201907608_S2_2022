@@ -3,12 +3,11 @@ import xml.etree.ElementTree as ET
 from Listas_Infor_pacientes import *
 from Listas_info_celulas import *
 
-
 class Open:
 
     def Leer(self, direccion):
 
-        info = Lista() #clase lida
+        self.info = Lista() #clase lida
 
         tree = ET.parse(direccion) #leer elemntTree 
 
@@ -23,14 +22,19 @@ class Open:
             datos = paciente.find('datospersonales') #obtener datos de la etiqueta datos
             nombre = datos.find('nombre').text #obtener el nombre 
             edad = datos.find('edad').text #obtener edad
-            info.agregar(nombre, edad) # agregar a lista
-            print(i,nombre,edad) #imprimir datos
-
+            self.info.agregar(nombre, edad) # agregar a lista
+            
         print('-------------------------------')
+
+    def mostrar(self):
+
+        self.info.Mostrar()
+
+        #-------------------------------------------------------------------------------------------------------------------
 
     def Leer_rejillas(self,direccion):
 
-        info_rejilla = Lista_rejilla()
+        self.info_rejilla = Lista_rejilla()
 
         tree = ET.parse(direccion)
 
@@ -73,14 +77,24 @@ class Open:
                                 
 
                         
-                        info_rejilla.agregar(nombre,celula,str(i),str(j)) #agregar informacion a listas
+                        self.info_rejilla.agregar(nombre,celula,str(i),str(j)) #agregar informacion a listas
 
             else: 
 
                 print('La rejilla celular del paciente '+dato.find('nombre').text+' no es una rejilla valida') #si la rejilla no es m%10 ==0
 
             
-        info_rejilla.Mostrar()
+    def mostrar_rejilla(self, nombre):
+
+        #self.info_rejilla.Mostrar(nombre) 
+
+        self.info_rejilla.Periodos(5,nombre)
+
+
+
+
+
+        
 
 
             

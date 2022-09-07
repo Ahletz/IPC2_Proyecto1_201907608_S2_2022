@@ -1,3 +1,5 @@
+from Listas_celulas import *
+
 class Nodo: #clase nodo
 
     def __init__ (self,nombre, estado, fila, columna): #creacion de nodo
@@ -84,11 +86,11 @@ class Lista_rejilla: #clase listas
 
         return contador
 
-    def Mostrar(self,): #mostrar contenido de la lista
+    def Mostrar(self, nombre_paciente): #mostrar contenido de la lista
+
         actual = self.head
 
-        print('INGRESE EL NOMBRE DEL PACIENTE PARA VER SU REJILLA: ')
-        nombre = input()
+        nombre = nombre_paciente
 
         while actual != None:
 
@@ -96,9 +98,9 @@ class Lista_rejilla: #clase listas
 
                 print('['+actual.obtener_fila()+'x'+actual.obtener_columna()+', '+actual.obtener_estado()+']', end='')
 
-
             actual = actual.obtener_next()   
-        print()    
+        print()
+    
 
     def Eliminar(self,dato): #eliminar contenido de la lista
         actual = self.head
@@ -115,3 +117,29 @@ class Lista_rejilla: #clase listas
             self.head = actual.obtener_next()
         else:
             anterior.asignar_next(actual.obtener_next())
+
+
+    def Periodos(self, periodos, nombre):
+
+        #crear primer periodo
+        
+        self.celulas = Lista_rejilla_celular() #lista de rejillas con celulas periodos
+
+        actual = self.head
+
+        i = 1 #numero de periodo
+
+        while actual != None: #ciclo para agregar la primera rejilla = periodo 1
+
+            if nombre == actual.obtener(): #agregar la rejilla de un paciente
+
+                self.celulas.agregar(actual.obtener(), actual.obtener_estado(), actual.obtener_fila(), actual.obtener_columna(), str(i) ) #agregar primera rejilla
+            
+            actual = actual.obtener_next()
+
+        #agregar mas rejillas y analisis de celulas
+
+        self.celulas.Infectar(periodos)
+
+        self.celulas.Mostrar()
+
