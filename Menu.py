@@ -24,7 +24,8 @@ class Menu:
             print('|| 1. Cargar Archivo.')
             print('|| 2. Analizar paciente.')
             print('|| 3. Generar Graficas.')
-            print('|| 4. Salir.')
+            print('|| 4. Generar salida.')
+            print('|| 5. Salir.')
 
             #try: #capturador try exeption de errores al momento de ingresar una opcion no valida
                     
@@ -46,40 +47,11 @@ class Menu:
 
             elif opcion == 2:
 
-                    self.lectura.mostrar()    
-                    print('INGRESE EL NOMBRE DEL PACIENTE PARA GENERAR SU DIAGNOSTICO: ')
-
-                    nombre = input()
-
-                    self.lectura.mostrar_rejilla(nombre)
-
-                    print('¿DESEA REVISAR UN PERIODO EN ESPECIFICO?')
-                    print('1.Si 2.No')
-
-                    des = int(input())
-                    ciclo = True
-
-                    while ciclo == True:
-                    
-                        try:
-
-                            if des == 1:
-                                
-                                self.lectura.mostrar_rejilla(nombre)
-                                
-                                ciclo = False
-
-                            elif des == 2:
-
-                                ciclo = False
-
-                        except:
-
-                            print('NO INGRESO UNA OPCION VALIDA')
+                    pass
 
             elif opcion == 3:
                         
-                        self.lectura.graficar_rejillas_entrada()
+                        self.Menu1()
 
             elif opcion == 4:
 
@@ -88,15 +60,40 @@ class Menu:
            # except:
 
                 #print('USTED NO SELECCIONO UNA OPCION VALIDA.')
-
-    def Graficar(self):
-
-        pass
-
-    def Generar_salida(self):
-
-        pass
             
+    def Menu1(self):
+
+        ciclo = True 
+
+        while ciclo == True:
+
+            print('|| seleccione una opcion:            ||')
+            print('|| 1. Graficar primera rejilla.      ||')
+            print('|| 2. Graficar un periodo.           ||')
+            print('|| 3. Salir.                         ||')
+
+            opcion = input()
+
+            if opcion == '1':
+
+                pass
+            
+            elif opcion == '2':
+
+                pass
+        
+
+            elif opcion == '3':
+
+                ciclo = False
+
+            else: 
+
+                print('NO INGRESO UNA OPCION VALIDA')
+
+
+        
+
 
             
         

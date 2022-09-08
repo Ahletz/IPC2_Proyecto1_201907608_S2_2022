@@ -126,18 +126,15 @@ class Lista_rejilla: #clase listas
 
         #crear primer periodo
 
-        
         self.celulas = Lista_rejilla_celular() #lista de rejillas con celulas periodos
 
         actual = self.head
-
-        i = 1 #numero de periodo
 
         while actual != None: #ciclo para agregar la primera rejilla = periodo 1
 
             if nombre == actual.obtener(): #agregar la rejilla de un paciente
 
-                self.celulas.agregar(actual.obtener(), actual.obtener_estado(), actual.obtener_fila(), actual.obtener_columna(), str(i) ) #agregar primera rejilla
+                self.celulas.agregar(actual.obtener(), actual.obtener_estado(), actual.obtener_fila(), actual.obtener_columna(), '1' ) #agregar primera rejilla
             
             actual = actual.obtener_next()
 
@@ -145,9 +142,12 @@ class Lista_rejilla: #clase listas
 
         self.celulas.Infectar(periodos)
 
-    def Mostrar_periodos(self):
 
-        self.celulas.Mostrar()
+
+
+    def Graficar_periodos(self, periodos):
+
+        self.celulas.Graficar_rejilla(periodos)
 
     
     def Graficar(self, nombre_paciente):

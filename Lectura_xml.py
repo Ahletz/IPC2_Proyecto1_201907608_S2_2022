@@ -26,13 +26,13 @@ class Open:
             
         print('-------------------------------')
 
-    def mostrar(self):
+    def mostrar(self): #muestra los pacientes
 
         self.info.Mostrar()
 
         #-------------------------------------------------------------------------------------------------------------------
 
-    def Leer_rejillas(self,direccion):
+    def Leer_rejillas(self,direccion): #rejillas
 
         self.info_rejilla = Lista_rejilla()
 
@@ -93,6 +93,7 @@ class Open:
         self.info_rejilla.Periodos(self.periodos,nombre)
 
         self.info_rejilla.Mostrar_periodos()
+        
 
     def graficar_rejillas_entrada(self):
 
@@ -104,6 +105,10 @@ class Open:
         nombre = input()
 
         self.info_rejilla.Graficar(nombre)
+
+    def graficar_periodo(self, periodo):
+
+        self.info_rejilla.Graficar_periodos(periodo)
 
 
 

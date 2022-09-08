@@ -1,3 +1,5 @@
+from graphviz import Digraph
+
 class Nodo: #clase nodo
 
     def __init__ (self,nombre, estado, fila, columna, periodo): #creacion de nodo
@@ -99,19 +101,15 @@ class Lista_rejilla_celular: #clase listas
 
     def Mostrar(self,): #mostrar contenido de la lista
         actual = self.head
-
-        print('INGRESE EL NOMBRE DEL PACIENTE PARA VER SU REJILLA: ') #nombre del paciente
-        nombre = input()
         
         print('INGRESE EL PERIODO QUE DESEA REVISAR: ') #periodo que desea visualizar
         periodo = input()
 
         while actual != None:
 
-            if nombre == actual.obtener() and periodo == actual.obtener_periodo():
+            if  periodo == actual.obtener_periodo():
 
                 print('['+actual.obtener_fila()+'x'+actual.obtener_columna()+', '+actual.obtener_estado()+']', end='')
-
 
             actual = actual.obtener_next()   
         print()    
@@ -132,14 +130,16 @@ class Lista_rejilla_celular: #clase listas
         else:
             anterior.asignar_next(actual.obtener_next())
 
+            
+
     
     def Infectar(self, periodos): #crear periodos
 
         actual = self.head
 
-        periodos = int(periodos) #cantidad de periodos
+        periodos = int(periodos)+1 #cantidad de periodos
 
-        for i in range(2,periodos+1): # ciclo para crear periodos
+        for i in range(2,periodos): # ciclo para crear periodos
 
             while actual != None:
 
@@ -189,23 +189,23 @@ class Lista_rejilla_celular: #clase listas
                     ezquina_d_fila = str(int(actual.obtener_fila())-1)
                     ezquina_d_columna = str(int(actual.obtener_columna())+1)
 
-                    actual1 = self.head
+                    actual2 = self.head
 
-                    while actual1 != None:
+                    while actual2 != None:
 
-                        if actual1.obtener_fila() == Arriba_fila and actual1.obtener_columna() == Arriba_columna and actual1.obtener_estado() == 'contagiada':
-
-                            infectados+=1
-
-                        if actual1.obtener_fila() == derecha_fila and actual1.obtener_columna() == derecha_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual2.obtener_fila() == Arriba_fila and actual2.obtener_columna() == Arriba_columna and actual2.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        if actual1.obtener_fila() == ezquina_d_fila and actual1.obtener_columna() == ezquina_d_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual2.obtener_fila() == derecha_fila and actual2.obtener_columna() == derecha_columna and actual2.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        actual1 = actual1.obtener_next()
+                        if actual2.obtener_fila() == ezquina_d_fila and actual2.obtener_columna() == ezquina_d_columna and actual2.obtener_estado() == 'contagiada':
+
+                            infectados+=1
+
+                        actual2 = actual2.obtener_next()
 
                 
                 elif actual.obtener_fila() == '1' and actual.obtener_columna() == str(periodos): #estado esquina superior derecha
@@ -221,23 +221,23 @@ class Lista_rejilla_celular: #clase listas
                      ezquina_fila = str(int(actual.obtener_fila())+1)
                      ezquina_columna = str(int(actual.obtener_columna())-1)
 
-                     actual1 = self.head
+                     actual3 = self.head
 
-                     while actual1 != None:
+                     while actual3 != None:
 
-                        if actual1.obtener_fila() == Abajo_fila and actual1.obtener_columna() == Abajo_columna and actual1.obtener_estado() == 'contagiada':
-
-                            infectados+=1
-
-                        if actual1.obtener_fila() == izquierda_fila and actual1.obtener_columna() == izquierda_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual3.obtener_fila() == Abajo_fila and actual3.obtener_columna() == Abajo_columna and actual3.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        if actual1.obtener_fila() == ezquina_fila and actual1.obtener_columna() == ezquina_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual3.obtener_fila() == izquierda_fila and actual3.obtener_columna() == izquierda_columna and actual3.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        actual1 = actual1.obtener_next()
+                        if actual3.obtener_fila() == ezquina_fila and actual3.obtener_columna() == ezquina_columna and actual3.obtener_estado() == 'contagiada':
+
+                            infectados+=1
+
+                        actual3 = actual3.obtener_next()
 
 
                 elif actual.obtener_fila() == '1' and actual.obtener_columna() == '1': #estado esquina superior izquierda
@@ -253,23 +253,23 @@ class Lista_rejilla_celular: #clase listas
                     ezquina_fila = str(int(actual.obtener_fila())+1)
                     ezquina_columna = str(int(actual.obtener_columna())+1)
 
-                    actual1 = self.head
+                    actual4 = self.head
 
-                    while actual1 != None:
+                    while actual4 != None:
 
-                        if actual1.obtener_fila() == Abajo_fila and actual1.obtener_columna() == Abajo_columna and actual1.obtener_estado() == 'contagiada':
-
-                            infectados+=1
-
-                        if actual1.obtener_fila() == derecha_fila and actual1.obtener_columna() == derecha_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual4.obtener_fila() == Abajo_fila and actual4.obtener_columna() == Abajo_columna and actual4.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        if actual1.obtener_fila() == ezquina_fila and actual1.obtener_columna() == ezquina_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual4.obtener_fila() == derecha_fila and actual4.obtener_columna() == derecha_columna and actual4.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        actual1 = actual1.obtener_next()
+                        if actual4.obtener_fila() == ezquina_fila and actual4.obtener_columna() == ezquina_columna and actual4.obtener_estado() == 'contagiada':
+
+                            infectados+=1
+
+                        actual4 = actual4.obtener_next()
 
                 elif actual.obtener_fila() == '1' and actual.obtener_columna() != '1'and actual.obtener_columna() != '5': #estado primera fila
 
@@ -290,31 +290,31 @@ class Lista_rejilla_celular: #clase listas
                     esquinaD_fila = str(int(actual.obtener_fila())+1)
                     esquinaD_columna = str(int(actual.obtener_columna())+1)
 
-                    actual1 = self.head
+                    actual5 = self.head
 
-                    while actual1 != None:
+                    while actual5 != None:
 
-                        if actual1.obtener_fila() == Abajo_fila and actual1.obtener_columna() == Abajo_columna and actual1.obtener_estado() == 'contagiada':
-
-                            infectados+=1
-
-                        if actual1.obtener_fila() == derecha_fila and actual1.obtener_columna() == derecha_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual5.obtener_fila() == Abajo_fila and actual5.obtener_columna() == Abajo_columna and actual5.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        if actual1.obtener_fila() == izquierda_fila and actual1.obtener_columna() == izquierda_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual5.obtener_fila() == derecha_fila and actual5.obtener_columna() == derecha_columna and actual5.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        if actual1.obtener_fila() == esquinaI_fila and actual1.obtener_columna() == esquinaI_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual5.obtener_fila() == izquierda_fila and actual5.obtener_columna() == izquierda_columna and actual5.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        if actual1.obtener_fila() == esquinaD_fila and actual1.obtener_columna() == esquinaD_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual5.obtener_fila() == esquinaI_fila and actual5.obtener_columna() == esquinaI_columna and actual5.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        actual1 = actual1.obtener_next()
+                        if actual5.obtener_fila() == esquinaD_fila and actual5.obtener_columna() == esquinaD_columna and actual5.obtener_estado() == 'contagiada':
+
+                            infectados+=1
+
+                        actual5 = actual5.obtener_next()
 
                 
                 elif actual.obtener_fila() == '1' and actual.obtener_columna() != '1'and actual.obtener_columna() != '5': #estado ultima fila fila
@@ -336,31 +336,31 @@ class Lista_rejilla_celular: #clase listas
                     esquinaD_fila = str(int(actual.obtener_fila())-1)
                     esquinaD_columna = str(int(actual.obtener_columna())+1)
 
-                    actual1 = self.head
+                    actual6 = self.head
 
-                    while actual1 != None:
+                    while actual6 != None:
 
-                        if actual1.obtener_fila() == Abajo_fila and actual1.obtener_columna() == Abajo_columna and actual1.obtener_estado() == 'contagiada':
-
-                            infectados+=1
-
-                        if actual1.obtener_fila() == derecha_fila and actual1.obtener_columna() == derecha_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual6.obtener_fila() == Abajo_fila and actual6.obtener_columna() == Abajo_columna and actual6.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        if actual1.obtener_fila() == izquierda_fila and actual1.obtener_columna() == izquierda_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual6.obtener_fila() == derecha_fila and actual6.obtener_columna() == derecha_columna and actual6.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        if actual1.obtener_fila() == esquinaI_fila and actual1.obtener_columna() == esquinaI_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual6.obtener_fila() == izquierda_fila and actual6.obtener_columna() == izquierda_columna and actual6.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        if actual1.obtener_fila() == esquinaD_fila and actual1.obtener_columna() == esquinaD_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual6.obtener_fila() == esquinaI_fila and actual6.obtener_columna() == esquinaI_columna and actual6.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        actual1 = actual1.obtener_next()
+                        if actual6.obtener_fila() == esquinaD_fila and actual6.obtener_columna() == esquinaD_columna and actual6.obtener_estado() == 'contagiada':
+
+                            infectados+=1
+
+                        actual6 = actual6.obtener_next()
 
                 elif actual.obtener_columna() == '1' and actual.obtener_fila() != '1'and actual.obtener_fila() != '5': #estado primera columna
 
@@ -381,31 +381,31 @@ class Lista_rejilla_celular: #clase listas
                     esquinaB_fila = str(int(actual.obtener_fila())+1)
                     esquinaB_columna = str(int(actual.obtener_columna())+1)
 
-                    actual1 = self.head
+                    actual7 = self.head
 
-                    while actual1 != None:
+                    while actual7 != None:
 
-                        if actual1.obtener_fila() == Abajo_fila and actual1.obtener_columna() == Abajo_columna and actual1.obtener_estado() == 'contagiada':
-
-                            infectados+=1
-
-                        if actual1.obtener_fila() == derecha_fila and actual1.obtener_columna() == derecha_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual7.obtener_fila() == Abajo_fila and actual7.obtener_columna() == Abajo_columna and actual7.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        if actual1.obtener_fila() == Arriba_fila and actual1.obtener_columna() == Arriba_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual7.obtener_fila() == derecha_fila and actual7.obtener_columna() == derecha_columna and actual7.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        if actual1.obtener_fila() == esquinaA_fila and actual1.obtener_columna() == esquinaA_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual7.obtener_fila() == Arriba_fila and actual7.obtener_columna() == Arriba_columna and actual7.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        if actual1.obtener_fila() == esquinaB_fila and actual1.obtener_columna() == esquinaB_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual7.obtener_fila() == esquinaA_fila and actual7.obtener_columna() == esquinaA_columna and actual7.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        actual1 = actual1.obtener_next()
+                        if actual7.obtener_fila() == esquinaB_fila and actual7.obtener_columna() == esquinaB_columna and actual7.obtener_estado() == 'contagiada':
+
+                            infectados+=1
+
+                        actual7 = actual7.obtener_next()
 
 
                 elif actual.obtener_columna() == '5' and actual.obtener_fila() != '1'and actual.obtener_fila() != '5': #estado ultima columna
@@ -427,31 +427,31 @@ class Lista_rejilla_celular: #clase listas
                     esquinaB_fila = str(int(actual.obtener_fila())+1)
                     esquinaB_columna = str(int(actual.obtener_columna())-1)
 
-                    actual1 = self.head
+                    actual8 = self.head
 
-                    while actual1 != None:
+                    while actual8 != None:
 
-                        if actual1.obtener_fila() == Abajo_fila and actual1.obtener_columna() == Abajo_columna and actual1.obtener_estado() == 'contagiada':
-
-                            infectados+=1
-
-                        if actual1.obtener_fila() == izquierda_fila and actual1.obtener_columna() == izquierda_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual8.obtener_fila() == Abajo_fila and actual8.obtener_columna() == Abajo_columna and actual8.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        if actual1.obtener_fila() == Arriba_fila and actual1.obtener_columna() == Arriba_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual8.obtener_fila() == izquierda_fila and actual8.obtener_columna() == izquierda_columna and actual8.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        if actual1.obtener_fila() == esquinaA_fila and actual1.obtener_columna() == esquinaA_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual8.obtener_fila() == Arriba_fila and actual8.obtener_columna() == Arriba_columna and actual8.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        if actual1.obtener_fila() == esquinaB_fila and actual1.obtener_columna() == esquinaB_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual8.obtener_fila() == esquinaA_fila and actual8.obtener_columna() == esquinaA_columna and actual8.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        actual1 = actual1.obtener_next()    
+                        if actual8.obtener_fila() == esquinaB_fila and actual8.obtener_columna() == esquinaB_columna and actual8.obtener_estado() == 'contagiada':
+
+                            infectados+=1
+
+                        actual8 = actual8.obtener_next()    
 
 
                 else:
@@ -480,45 +480,45 @@ class Lista_rejilla_celular: #clase listas
                     esquinaBD_fila = str(int(actual.obtener_fila())+1)
                     esquinaBD_columna = str(int(actual.obtener_columna())-1)
 
-                    actual1 = self.head
+                    actual9 = self.head
 
-                    while actual1 != None:
+                    while actual9 != None:
 
-                        if actual1.obtener_fila() == Abajo_fila and actual1.obtener_columna() == Abajo_columna and actual1.obtener_estado() == 'contagiada':
-
-                            infectados+=1
-                        
-                        if actual1.obtener_fila() == Arriba_fila and actual1.obtener_columna() == Arriba_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual9.obtener_fila() == Abajo_fila and actual9.obtener_columna() == Abajo_columna and actual9.obtener_estado() == 'contagiada':
 
                             infectados+=1
                         
-                        if actual1.obtener_fila() == izquierda_fila and actual1.obtener_columna() == izquierda_columna and actual1.obtener_estado() == 'contagiada':
-
-                            infectados+=1
-
-                        if actual1.obtener_fila() == derecha_fila and actual1.obtener_columna() == derecha_columna and actual1.obtener_estado() == 'contagiada':
-
-                            infectados+=1
-
-                        if actual1.obtener_fila() == esquinaAI_fila and actual1.obtener_columna() == esquinaAI_columna and actual1.obtener_estado() == 'contagiada':
-
-                            infectados+=1
-
-                        if actual1.obtener_fila() == esquinaBI_fila and actual1.obtener_columna() == esquinaBI_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual9.obtener_fila() == Arriba_fila and actual9.obtener_columna() == Arriba_columna and actual9.obtener_estado() == 'contagiada':
 
                             infectados+=1
                         
-                        if actual1.obtener_fila() == esquinaAD_fila and actual1.obtener_columna() == esquinaAD_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual9.obtener_fila() == izquierda_fila and actual9.obtener_columna() == izquierda_columna and actual9.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
-                        if actual1.obtener_fila() == esquinaBD_fila and actual1.obtener_columna() == esquinaBD_columna and actual1.obtener_estado() == 'contagiada':
+                        if actual9.obtener_fila() == derecha_fila and actual9.obtener_columna() == derecha_columna and actual9.obtener_estado() == 'contagiada':
+
+                            infectados+=1
+
+                        if actual9.obtener_fila() == esquinaAI_fila and actual9.obtener_columna() == esquinaAI_columna and actual9.obtener_estado() == 'contagiada':
+
+                            infectados+=1
+
+                        if actual9.obtener_fila() == esquinaBI_fila and actual9.obtener_columna() == esquinaBI_columna and actual9.obtener_estado() == 'contagiada':
+
+                            infectados+=1
+                        
+                        if actual9.obtener_fila() == esquinaAD_fila and actual9.obtener_columna() == esquinaAD_columna and actual9.obtener_estado() == 'contagiada':
+
+                            infectados+=1
+
+                        if actual9.obtener_fila() == esquinaBD_fila and actual9.obtener_columna() == esquinaBD_columna and actual9.obtener_estado() == 'contagiada':
 
                             infectados+=1
 
                         
 
-                        actual1 = actual1.obtener_next() 
+                        actual9 = actual9.obtener_next() 
 
                 
                 if infectados >= 3: #estado y agregacion a celulas repeticion #tal
@@ -531,7 +531,39 @@ class Lista_rejilla_celular: #clase listas
 
                     self.agregar(actual.obtener(),actual.obtener_estado(),actual.obtener_fila(),actual.obtener_columna(),str(i))
 
+                
                 actual = actual.obtener_next()
+
+    
+    def Graficar_rejilla(self, periodo):
+
+        dot = Digraph('Rejilla', filename='Archivo_graficas.dot',engine='dot', format='svg')
+        dot.attr(rankdir='LR')
+        dot.node_attr.update(shape='box')
+        dot.node_attr['style'] = 'filled'
+
+        actual = self.head
+
+        periodo = periodo
+
+        while actual != None:
+
+            if periodo == actual.obtener():
+
+                estado = actual.obtener_periodo()
+
+                if actual.obtener_estado == 'contagiada':
+
+                    dot.node(estado, fillcolor = 'green')
+
+                else:
+
+                    dot.node(estado)
+
+
+            actual = actual.obtener_next()   
+
+        dot.view()
 
 
 
