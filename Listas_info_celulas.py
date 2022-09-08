@@ -1,4 +1,7 @@
+from fileinput import filename
+from turtle import fillcolor
 from Listas_celulas import *
+from graphviz import Digraph
 
 class Nodo: #clase nodo
 
@@ -122,6 +125,7 @@ class Lista_rejilla: #clase listas
     def Periodos(self, periodos, nombre):
 
         #crear primer periodo
+
         
         self.celulas = Lista_rejilla_celular() #lista de rejillas con celulas periodos
 
@@ -141,5 +145,43 @@ class Lista_rejilla: #clase listas
 
         self.celulas.Infectar(periodos)
 
+    def Mostrar_periodos(self):
+
         self.celulas.Mostrar()
+
+    
+    def Graficar(self, nombre_paciente):
+
+        dot = Digraph('Rejilla', filename='Archivo_graficas.dot',engine='dot', format='svg')
+        dot.attr(rankdir='LR')
+        dot.node_attr.update(shape='box')
+        dot.node_attr['style'] = 'filled'
+
+        actual = self.head
+
+        nombre = nombre_paciente
+
+        while actual != None:
+
+            if nombre == actual.obtener():
+
+                estado = str(actual.obtener_estado())
+
+                if actual.obtener_estado == 'contagiada':
+
+                    dot.node(estado, fillcolor = 'green')
+
+                else:
+
+                    dot.node(estado)
+
+
+            actual = actual.obtener_next()   
+
+        dot.view()
+
+
+
+
+        
 

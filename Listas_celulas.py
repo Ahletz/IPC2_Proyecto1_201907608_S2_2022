@@ -102,6 +102,7 @@ class Lista_rejilla_celular: #clase listas
 
         print('INGRESE EL NOMBRE DEL PACIENTE PARA VER SU REJILLA: ') #nombre del paciente
         nombre = input()
+        
         print('INGRESE EL PERIODO QUE DESEA REVISAR: ') #periodo que desea visualizar
         periodo = input()
 
@@ -132,15 +133,13 @@ class Lista_rejilla_celular: #clase listas
             anterior.asignar_next(actual.obtener_next())
 
     
-    def Infectar(self, periodos):
+    def Infectar(self, periodos): #crear periodos
 
         actual = self.head
 
         periodos = int(periodos) #cantidad de periodos
 
         for i in range(2,periodos+1): # ciclo para crear periodos
-
-            
 
             while actual != None:
 
@@ -520,11 +519,6 @@ class Lista_rejilla_celular: #clase listas
                         
 
                         actual1 = actual1.obtener_next() 
-
-
-
-
-
 
                 
                 if infectados >= 3: #estado y agregacion a celulas repeticion #tal

@@ -48,6 +48,8 @@ class Open:
             
             m = int(paciente.find('m').text)
 
+            self.periodos = m
+
             nombre = dato.find('nombre').text
 
             estado = rejilla.find('celda')
@@ -88,7 +90,20 @@ class Open:
 
         #self.info_rejilla.Mostrar(nombre) 
 
-        self.info_rejilla.Periodos(5,nombre)
+        self.info_rejilla.Periodos(self.periodos,nombre)
+
+        self.info_rejilla.Mostrar_periodos()
+
+    def graficar_rejillas_entrada(self):
+
+        self.mostrar()
+
+        print()
+        print('INGRESE EL NOMBRE PARA VER SU REJILLA INICIAL: ')
+
+        nombre = input()
+
+        self.info_rejilla.Graficar(nombre)
 
 
 

@@ -23,7 +23,7 @@ class Menu:
 
             print('|| 1. Cargar Archivo.')
             print('|| 2. Analizar paciente.')
-            print('|| 3. Generar Salida.')
+            print('|| 3. Generar Graficas.')
             print('|| 4. Salir.')
 
             #try: #capturador try exeption de errores al momento de ingresar una opcion no valida
@@ -44,23 +44,42 @@ class Menu:
 
                 self.lectura.Leer_rejillas(direccion)
 
-                print('--------------------------------------------------------------------')
-
             elif opcion == 2:
 
                     self.lectura.mostrar()    
-                    print('INGRESE EL NOMBRE DEL PACIENTE: ')
+                    print('INGRESE EL NOMBRE DEL PACIENTE PARA GENERAR SU DIAGNOSTICO: ')
 
                     nombre = input()
 
                     self.lectura.mostrar_rejilla(nombre)
 
-                    
+                    print('¿DESEA REVISAR UN PERIODO EN ESPECIFICO?')
+                    print('1.Si 2.No')
 
+                    des = int(input())
+                    ciclo = True
+
+                    while ciclo == True:
+                    
+                        try:
+
+                            if des == 1:
+                                
+                                self.lectura.mostrar_rejilla(nombre)
+                                
+                                ciclo = False
+
+                            elif des == 2:
+
+                                ciclo = False
+
+                        except:
+
+                            print('NO INGRESO UNA OPCION VALIDA')
 
             elif opcion == 3:
                         
-                        print()
+                        self.lectura.graficar_rejillas_entrada()
 
             elif opcion == 4:
 
