@@ -86,14 +86,14 @@ class Open:
                 print('La rejilla celular del paciente '+dato.find('nombre').text+' no es una rejilla valida') #si la rejilla no es m%10 ==0
 
             
+        self.info_rejilla.Periodos(self.periodos,nombre)
+
+
     def mostrar_rejilla(self, nombre):
 
         #self.info_rejilla.Mostrar(nombre) 
-
-        self.info_rejilla.Periodos(self.periodos,nombre)
-
-        self.info_rejilla.Mostrar_periodos()
-        
+        self.info_rejilla.Mostrar(nombre)
+  
 
     def graficar_rejillas_entrada(self):
 
@@ -109,6 +109,10 @@ class Open:
     def graficar_periodo(self, periodo):
 
         self.info_rejilla.Graficar_periodos(periodo)
+
+    def Xml(self):
+
+        self.info.generar_XML()
 
 
 

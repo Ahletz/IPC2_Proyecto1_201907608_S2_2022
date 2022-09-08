@@ -1,3 +1,5 @@
+import xml.etree.ElementTree as ET
+
 class Nodo: #clase nodo
 
     def __init__ (self,nombre, edad): #creacion de nodo
@@ -76,3 +78,27 @@ class Lista: #clase listas
             self.head = actual.obtener_next()
         else:
             anterior.asignar_next(actual.obtener_next())
+
+    def generar_XML(self):
+
+        root = ET.Element('PACIENTES')
+
+        paciente = ET.SubElement(root,'PACIENTE')
+
+        info = ET.SubElement(paciente,'INFORMACION PACIENTE')
+        
+        actual = self.head
+
+        while actual != None:
+
+            nombre = ET.SubElement(info,'NOMBRE')
+            nombre.text = actual.obtener()
+
+            edad = ET.SubElement(info, 'EDAD')
+            edad.text = actual.obtener_edad()
+
+            actual = actual.obtener_next()
+
+        doc = ET.ElementTree(root)
+        doc = open('resultados.xml', 'w')
+        doc.write(ET.tostring(root, encoding='utf-8').decode('utf-8'))

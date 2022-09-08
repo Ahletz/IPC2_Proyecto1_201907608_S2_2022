@@ -47,13 +47,39 @@ class Menu:
 
             elif opcion == 2:
 
-                    pass
+                    print('|| pacientes cargados en el sistema: ')
+                    self.lectura.mostrar()
+
+                    print()
+                    print('|| ¿Desea ver la rejilla inicial de un paciente?')
+                    print('|| 1. SI  2. NO')
+
+                    opcion = input()
+
+                    if opcion == '1':
+
+                        print('|| Ingrese el nombre de un paciente: ')
+
+                        self.lectura.mostrar()
+
+                        print()
+
+                        nombre = input()
+
+                        self.lectura.mostrar_rejilla(nombre)
+
+
+
 
             elif opcion == 3:
                         
                         self.Menu1()
 
             elif opcion == 4:
+                        
+                        self.lectura.Xml()
+
+            elif opcion == 5:
 
                         exit = False #cerrar el ciclo del menu
 
@@ -76,11 +102,15 @@ class Menu:
 
             if opcion == '1':
 
-                pass
+                self.lectura.graficar_rejillas_entrada()
             
             elif opcion == '2':
 
-                pass
+                print('INGRESE EL PERIODO QUE DESEA GRAFICAR')
+
+                periodo = input()
+
+                self.lectura.graficar_periodo(periodo)
         
 
             elif opcion == '3':
